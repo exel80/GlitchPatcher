@@ -21,11 +21,6 @@ Todo
 =======
 * Fix glowstone "xray"
 * Auto-Update
-* --Fix pig with saddles infinity move speed--
-* --Fix Anvil stack enchanting--
-* --//MultiVerse bug (infinity creative ALREADY FIXED)//--
-* --SQLite support--
-* --Infinite invisible potion bug--
 
 More about GlitchPatcher,
 http://dev.bukkit.org/bukkit-plugins/glitchpatcher/

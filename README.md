@@ -1,3 +1,5 @@
+GlitchPatcher
+=======
 GlitchPatcher is basic bug/dupe glitches patcher. I will update plugin every time when i found glitch and I get it successfully repaired.
 If you know any bug/dupe glitch, you can send it me PM or post it to the comment.
 

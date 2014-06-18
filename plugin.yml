@@ -1,32 +1,20 @@
 name: "GlitchPatcher"
-version: "0.3.3 BETA"
+version: "0.3.4 BETA"
 main: me.exel80.glitchpatcher.gp
 commands:
    gp:
       description: GlitchPatcher command.
-   gp stats:
-      description: Get some statics of GlitchPatcher
    gp reload:
       description: Reload GlitchPatcher config.
-   gp reset:
-      description: Reset stats table.
 permissions:
   glitchpatcher.*:
      description: All permissions.
      default: op
      children:
-       glitchpatcher.stats: true
        glitchpatcher.reload: true
-       glitchpatcher.reset: true
        glitchpatcher.update: true
-  glitchpatcher.stats:
-      description: Permissions to use /gp stats
-      default: op
   glitchpatcher.reload:
       description: Permission to use /gp reload
-      default: op
-  glitchpatcher.reset:
-      description: Permission to use /gp reset
       default: op
   glitchpatcher.update:
       description: Permission to use /gp update

@@ -35,25 +35,28 @@ public class gpClicking implements Listener {
 			if(ent instanceof Player)
 			{
 				Inventory inv = event.getInventory();
-					if(inv instanceof AnvilInventory)
+				
+				if(inv instanceof AnvilInventory)
+				{
+					InventoryView view = event.getView();
+					int rawSlot = event.getRawSlot();
+					
+					if(rawSlot == view.convertSlot(rawSlot))
 					{
-						InventoryView view = event.getView();
-						int rawSlot = event.getRawSlot();
-						if(rawSlot == view.convertSlot(rawSlot)){
-							if(rawSlot == 2)
-							{
+						if(rawSlot == 2)
+						{
 							ItemStack item = event.getCurrentItem();
-								if(item != null)
-								{
-									if(item.getAmount() != 1)
-									{
-										if(plugin.getConfigs("GlitchFix.AnvilEnc-Enable") == true) { item.setAmount(1); }
-										if (plugin.getConfigs("Settings.Stats-Enable") == true) { gp.updateSQL("anvil"); }	
-									}
-								}
+						
+							if(item != null && item.getAmount() != 1
+									&& plugin.getConfigs("GlitchPatch.AnvilEnchant.Enable").equals("true"))
+							{
+								item.setAmount(1);								
+								if (plugin.getConfigs("Settings.Display.PatchAlert").equals("true"))
+									gp.patched("AnvilEnchant", ((Player) ent).getPlayer(), true);
 							}
 						}
 					}
+				}
 			}
 		}
 	}
@@ -66,27 +69,17 @@ public class gpClicking implements Listener {
 		
 		try
 		{
-			if(event.getClickedBlock().getTypeId() != 0)
+			if (event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK)
 			{
-				//HOE DIRT ABOVE WHICH THERE IS RANDOM BLOCK
-				if(plugin.getConfigs("GlitchFix.HoeFix-Enable") == true)
+				int b;
+				try { b = event.getClickedBlock().getTypeId(); } catch (Exception ex) { b = 0; ex.getStackTrace(); }
+				
+				if (b != 0 && event.getClickedBlock().getType() == Material.CHEST && plugin.getConfigs("GlitchPatch.SkullsGlitch.Enable").equals("true") &&
+						(event.getItem().getType() == Material.SKULL || event.getItem().getType() == Material.SKULL_ITEM))
 				{
-					if(p.getItemInHand().getType() == Material.WOOD_HOE || p.getItemInHand().getType() == Material.STONE_HOE ||
-					  p.getItemInHand().getType() == Material.IRON_HOE || p.getItemInHand().getType() == Material.GOLD_HOE ||
-					  p.getItemInHand().getType() == Material.DIAMOND_HOE)
-					{		
-						if(event.getClickedBlock().getTypeId() == 3)
-						{
-							int signy = event.getClickedBlock().getY() + 1;
-							int signx = event.getClickedBlock().getX();
-							int signz = event.getClickedBlock().getZ();
-							if(world.getBlockAt(signx, signy, signz).getTypeId() >= 1)
-							{
-								if (plugin.getConfigs("Settings.Stats-Enable") == true) { gp.updateSQL("hoefix"); }					
-								event.setCancelled(true);
-							}
-						}
-					}
+					event.setCancelled(true);
+					if (plugin.getConfigs("Settings.Display.PatchAlert").equals("true"))
+						gp.patched("Bedrock", p, true);
 				}
 			}
 		}

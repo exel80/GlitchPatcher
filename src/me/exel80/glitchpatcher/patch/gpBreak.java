@@ -27,24 +27,18 @@ public class gpBreak implements Listener {
 		GameMode gm = p.getGameMode();
 		
 		//IRON DOOR GLITCH FIX
-		if(plugin.getConfigs("GlitchFix.IronDoorFix-Enable") == true)
+		if(plugin.getConfigs("GlitchFix.IronDoor.Enable").equals("true"))
 		{
 			if(b.getTypeId() == 71 && b.getDrops().isEmpty() == false)
 			{		
-				if(gm == GameMode.SURVIVAL)
+				if(gm == GameMode.SURVIVAL && (p.getItemInHand().getTypeId() != 257 || p.getItemInHand().getTypeId() != 278 ||
+					   p.getItemInHand().getTypeId() != 285 || p.getItemInHand().getTypeId() != 270 ||
+					   p.getItemInHand().getTypeId() != 274))
 				{
-					if(p.getItemInHand().getTypeId() == 257 || p.getItemInHand().getTypeId() == 278 ||
-					   p.getItemInHand().getTypeId() == 285 || p.getItemInHand().getTypeId() == 270 ||
-					   p.getItemInHand().getTypeId() == 274)
-					{
-						//NOTHING...
-					}
-					else 
-					{
-						ItemStack item = new ItemStack(Material.IRON_DOOR, 1);
-						world.dropItem(b.getLocation(), item);
-						if (plugin.getConfigs("Settings.Stats-Enable") == true) { gp.updateSQL("irondoor"); }
-					}
+					ItemStack item = new ItemStack(Material.IRON_DOOR, 1);
+					world.dropItem(b.getLocation(), item);
+					if (plugin.getConfigs("Settings.Display.FixAlert").equals("true"))
+						gp.patched("IronDoor", p, false);
 				}
 			}
 		}

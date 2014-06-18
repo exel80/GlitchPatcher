@@ -1,9 +1,9 @@
 GlitchPatcher
 =======
-GlitchPatcher is basic bug/dupe glitches patcher. I will update plugin every time when i found glitch and I get it successfully repaired.
-If you know any bug/dupe glitch, you can send it me PM or post it to the comment.
+What is GlitchPatcher? GlitchPatcher try help you temporally patch unfixed glitch/dupe, before Bukkit or Mojang patch it. I will update plugin every time when I get glitch successfully patched. If you know any unfixed glitch, you can send it to my PM or post it to the comment.
 
 You can now download BETA version and try it your self.
+GlitchPatcher is open-source. You are allowed use source, but please give me same credits ;)
 
 Features
 =======

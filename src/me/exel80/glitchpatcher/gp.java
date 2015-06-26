@@ -20,7 +20,8 @@ public class gp extends JavaPlugin {
 
 	private final me.exel80.glitchpatcher.patch.gpBreak gpBreak = new me.exel80.glitchpatcher.patch.gpBreak(this);
 	private final me.exel80.glitchpatcher.patch.gpClicking gpClicking = new me.exel80.glitchpatcher.patch.gpClicking(this);
-
+	private final me.exel80.glitchpatcher.patch.gpDisable gpDisable = new me.exel80.glitchpatcher.patch.gpDisable(this);
+	
 	public static Logger log = Logger.getLogger("Minecraft");
 	public static String gplogo = ChatColor.GREEN + "[GlitchPatcher] " + ChatColor.WHITE;
 	
@@ -31,13 +32,6 @@ public class gp extends JavaPlugin {
 	public void onEnable()
 	{
 		Listenhandler();
-		
-		try {
-		    Metrics metrics = new Metrics(this);
-		    metrics.start();
-		} catch (IOException e) {
-		    // Failed to submit the stats :-(
-		}
 	}
 	
 	private void Listenhandler ()
@@ -45,6 +39,7 @@ public class gp extends JavaPlugin {
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(gpBreak, this);
 		pm.registerEvents(gpClicking, this);
+		pm.registerEvents(gpDisable, this);
 	}
 	
 	public boolean onCommand (CommandSender sender, Command cmd, String lable, String[] args)

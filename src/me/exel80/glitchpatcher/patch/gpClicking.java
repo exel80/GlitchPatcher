@@ -60,30 +60,4 @@ public class gpClicking implements Listener {
 			}
 		}
 	}
-	
-	@EventHandler(priority = EventPriority.LOW)
-	public void InteractEvent(PlayerInteractEvent event)
-	{
-		Player p = event.getPlayer();
-		org.bukkit.World world = p.getWorld();
-		
-		try
-		{
-			if (event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK)
-			{
-				int b;
-				try { b = event.getClickedBlock().getTypeId(); } catch (Exception ex) { b = 0; ex.getStackTrace(); }
-				
-				if (b != 0 && event.getClickedBlock().getType() == Material.CHEST && plugin.getConfigs("GlitchPatch.SkullsGlitch.Enable").equals("true") &&
-						(event.getItem().getType() == Material.SKULL || event.getItem().getType() == Material.SKULL_ITEM))
-				{
-					event.setCancelled(true);
-					if (plugin.getConfigs("Settings.Display.PatchAlert").equals("true"))
-						gp.patched("Bedrock", p, true);
-				}
-			}
-		}
-		catch (Exception e) { e.getStackTrace(); }
-	}
-
 }

@@ -1,5 +1,5 @@
 name: "GlitchPatcher"
-version: "0.3.4 BETA"
+version: "0.5 BETA"
 main: me.exel80.glitchpatcher.gp
 commands:
    gp:
